@@ -1,7 +1,11 @@
 # api_yamdb
 ***api_yamdb (YaMDb)*** is a training Rest API project based on Django REST framework.
 
-The YaMDb project collects user feedback on the works. Works are divided into categories: "Books", "Films", "Music".
+The YaMDb project collects user feedback on the works. Works are divided into categories: "Books", "Films", "TV Shows" and "Music".
+
+All available endpoints and API specifications here https://yamdb.ea4ws.tk/redoc/
+
+You can try most of the functionality use endpoints on this demo site https://yamdb.ea4ws.tk/ or testing it locally.
 
 ### Developing and testing locally (Quick Start)
 
