@@ -5,7 +5,7 @@ The YaMDb project collects user feedback on the works. Works are divided into ca
 
 All available endpoints and API specifications here https://yamdb.ea4ws.tk/redoc/
 
-You can try most of the functionality use endpoints on this demo site https://yamdb.ea4ws.tk/ or testing it locally.
+You can try most of the functionality use endpoints on this demo site https://yamdb.ea4ws.tk/api/v1/ or testing it locally.
 
 ### Developing and testing locally (Quick Start)
 
