@@ -30,7 +30,7 @@ You can try most of the functionality use endpoints on this demo site https://ya
   3. Use provided `Dockerfile` and `docker-compose.yml`, build the image and run the container
   ```
   docker-compose build
-  docker-compose up - d
+  docker-compose up -d
   ```
   4. Create Django admin user
   
