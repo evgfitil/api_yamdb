@@ -20,7 +20,7 @@ You can try most of the functionality use endpoints on this demo site https://ya
   ```
   4. Create Django admin user
   ```
-  docker exec -ti yamdb python ./manage.py createsuperuser
+  docker exec -ti yamdb python manage.py createsuperuser
   ```
   
 ##### Without prepared image:
@@ -35,7 +35,7 @@ You can try most of the functionality use endpoints on this demo site https://ya
   4. Create Django admin user
   
   ```
-  docker exec -ti <container_id> python ./manage.py createsuperuser
+  docker exec -ti <container_id> python manage.py createsuperuser
   ```
   If everything went well, you now have server running on http://localhost:8000
   
