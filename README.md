@@ -13,20 +13,20 @@ You can try most of the functionality use endpoints on this demo site https://ya
 
 ##### With prepared image from the DockerHub:
   1. Copy provided `docker-compose-run.yml` and customize for your needs
-  2. Create `.env` file with `SECRET_KEY` env (You can use Django secret key generator or something like this)
+  2. Create `.env` file with `SECRET_KEY` env (You can use Django secret key generator or other tool)
   3. Run
   ```
   docker-compose -f docker-compose-run.yml up -d
   ```
   4. Create Django admin user
   ```
-  docker exec -ti yamdb python ./manage.py createsuperuser
+  docker exec -ti yamdb python manage.py createsuperuser
   ```
   
 ##### Without prepared image:
 
   1. Fork this repository and clone your version of the repo
-  2. Create `.env` file with `SECRET_KEY` env (You can use Django secret key generator or something like this)
+  2. Create `.env` file with `SECRET_KEY` env (You can use Django secret key generator or other tool)
   3. Use provided `Dockerfile` and `docker-compose.yml`, build the image and run the container
   ```
   docker-compose build
@@ -35,7 +35,7 @@ You can try most of the functionality use endpoints on this demo site https://ya
   4. Create Django admin user
   
   ```
-  docker exec -ti <container_id> python ./manage.py createsuperuser
+  docker exec -ti <container_id> python manage.py createsuperuser
   ```
   If everything went well, you now have server running on http://localhost:8000
   
@@ -64,10 +64,16 @@ pip install -r requirements.txt
   ```
 python manage.py migrate
 ```
-  5. Start API server locally
+  5. Create Django admin user
+ ```
+ python manage.py createsuperuser
+ ```
+  6. Start API server locally
 ```
 python manage.py runserver
 ```
 If everything went well, you now have server running on http://localhost:8000
 
 You can find API specification and all available endpoints on documentation page http://localhost:8000/redoc/
+
+In order to obtain a confirmation code for the subsequent receipt of the token use `sent_emails` folder and then look into ``*.log`` files.
