@@ -64,7 +64,11 @@ pip install -r requirements.txt
   ```
 python manage.py migrate
 ```
-  5. Start API server locally
+  5. Create Django admin user
+ ```
+ python manage.py createsuperuser
+ ```
+  6. Start API server locally
 ```
 python manage.py runserver
 ```
