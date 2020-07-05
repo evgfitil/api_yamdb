@@ -13,7 +13,7 @@ You can try most of the functionality use endpoints on this demo site https://ya
 
 ##### With prepared image from the DockerHub:
   1. Copy provided `docker-compose-run.yml` and customize for your needs
-  2. Create `.env` file with `SECRET_KEY` env (You can use Django secret key generator or something like this)
+  2. Create `.env` file with `SECRET_KEY` env (You can use Django secret key generator or other tool)
   3. Run
   ```
   docker-compose -f docker-compose-run.yml up -d
@@ -26,7 +26,7 @@ You can try most of the functionality use endpoints on this demo site https://ya
 ##### Without prepared image:
 
   1. Fork this repository and clone your version of the repo
-  2. Create `.env` file with `SECRET_KEY` env (You can use Django secret key generator or something like this)
+  2. Create `.env` file with `SECRET_KEY` env (You can use Django secret key generator or other tool)
   3. Use provided `Dockerfile` and `docker-compose.yml`, build the image and run the container
   ```
   docker-compose build
