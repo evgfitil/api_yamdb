@@ -76,4 +76,4 @@ If everything went well, you now have a server running on http://localhost:8000
 
 You can find API specification and all available endpoints on documentation page http://localhost:8000/redoc/
 
-In order to obtain a confirmation code for the subsequent receipt of the token use `sent_emails` folder and then look into ``*.log`` files.
+To obtain a confirmation code for the subsequent receipt of the token use `sent_emails` folder and then look into ``*.log`` files.
