@@ -9,9 +9,9 @@ class Test04TitleAPI:
     def test_01_title_not_auth(self, client):
         response = client.get('/api/v1/titles/')
         assert response.status_code != 404, \
-            'Страница `/api/v1/titles/` не найдена, проверьте этот адрес в *urls.py*'
+            'The page `/api/v1/titles/` is not found, check it in *urls.py*'
         assert response.status_code == 200, \
-            'Проверьте, что при GET запросе `/api/v1/titles/` без токена авторизации возвращается статус 200'
+            'Check that the GET request `/api/v1/titles/` without token returns 200'
 
     @pytest.mark.django_db(transaction=True)
     def test_02_title(self, user_client):
@@ -20,177 +20,177 @@ class Test04TitleAPI:
         data = {}
         response = user_client.post('/api/v1/titles/', data=data)
         assert response.status_code == 400, \
-            'Проверьте, что при POST запросе `/api/v1/titles/` с не правильными данными возвращает статус 400'
-        data = {'name': 'Поворот туда', 'year': 2000, 'genre': [genres[0]['slug'], genres[1]['slug']],
-                'category': categories[0]['slug'], 'description': 'Крутое пике'}
+            'Check that the POST request`/api/v1/titles/` with wrong data returns 400'
+        data = {'name': 'Turn there', 'year': 2000, 'genre': [genres[0]['slug'], genres[1]['slug']],
+                'category': categories[0]['slug'], 'description': 'Cool peak'}
         response = user_client.post('/api/v1/titles/', data=data)
         assert response.status_code == 201, \
-            'Проверьте, что при POST запросе `/api/v1/titles/` с правильными данными возвращает статус 201'
-        data = {'name': 'Проект', 'year': 2020, 'genre': [genres[2]['slug']], 'category': categories[1]['slug'],
-                'description': 'Главная драма года'}
+            'Check that the POST request`/api/v1/titles/` with a valid data returns 201'
+        data = {'name': 'Project', 'year': 2020, 'genre': [genres[2]['slug']], 'category': categories[1]['slug'],
+                'description': 'Main drama of the year'}
         response = user_client.post('/api/v1/titles/', data=data)
         assert response.status_code == 201, \
-            'Проверьте, что при POST запросе `/api/v1/titles/` с правильными данными возвращает статус 201'
+            'Check that the POST request`/api/v1/titles/` with a valid data returns 201'
         assert type(response.json().get('id')) == int, \
-            'Проверьте, что при POST запросе `/api/v1/titles/` возвращаете данные созданного объекта. ' \
-            'Значение `id` нет или не является целым числом.'
+            'Check that the POST request`/api/v1/titles/` returns generated object data. ' \
+            '`id` value not found or not integer.'
         response = user_client.get('/api/v1/titles/')
         assert response.status_code == 200, \
-            'Проверьте, что при GET запросе `/api/v1/titles/` возвращает статус 200'
+            'Check that the GET request `/api/v1/titles/` returns 200'
         data = response.json()
         assert 'count' in data, \
-            'Проверьте, что при GET запросе `/api/v1/titles/` возвращаете данные с пагинацией. ' \
-            'Не найден параметр `count`'
+            'Check that the GET request `/api/v1/titles/` returns a data with paginations. ' \
+            '`count` is not found'
         assert 'next' in data, \
-            'Проверьте, что при GET запросе `/api/v1/titles/` возвращаете данные с пагинацией. ' \
-            'Не найден параметр `next`'
+            'Check that the GET request `/api/v1/titles/` returns a data with paginations. ' \
+            '`next` is not found'
         assert 'previous' in data, \
-            'Проверьте, что при GET запросе `/api/v1/titles/` возвращаете данные с пагинацией. ' \
-            'Не найден параметр `previous`'
+            'Check that the GET request `/api/v1/titles/` returns a data with paginations. ' \
+            '`previous` is not found'
         assert 'results' in data, \
-            'Проверьте, что при GET запросе `/api/v1/titles/` возвращаете данные с пагинацией. ' \
-            'Не найден параметр `results`'
+            'Check that the GET request `/api/v1/titles/` returns a data with paginations. ' \
+            '`results` is not found'
         assert data['count'] == 2, \
-            'Проверьте, что при GET запросе `/api/v1/titles/` возвращаете данные с пагинацией. ' \
-            'Значение параметра `count` не правильное'
+            'Check that the GET request `/api/v1/titles/` returns a data with paginations. ' \
+            '`count` have a wrong value'
         assert type(data['results']) == list, \
-            'Проверьте, что при GET запросе `/api/v1/titles/` возвращаете данные с пагинацией. ' \
-            'Тип параметра `results` должен быть список'
+            'Check that the GET request `/api/v1/titles/` returns a data with paginations. ' \
+            '`results` type should be a list'
         assert len(data['results']) == 2, \
-            'Проверьте, что при GET запросе `/api/v1/titles/` возвращаете данные с пагинацией. ' \
-            'Значение параметра `results` не правильное'
-        if data['results'][0].get('name') == 'Поворот туда':
+            'Check that the GET request `/api/v1/titles/` returns a data with paginations. ' \
+            '`results` have a wrong value'
+        if data['results'][0].get('name') == 'Turn there':
             title = data['results'][0]
-        elif data['results'][1].get('name') == 'Поворот туда':
+        elif data['results'][1].get('name') == 'Turn there':
             title = data['results'][1]
         else:
             assert False, \
-                'Проверьте, что при GET запросе `/api/v1/titles/` возвращаете данные с пагинацией. ' \
-                'Значение параметра `results` неправильное, `name` не найдено или не сохранилось при POST запросе.'
+                'Check that the GET request `/api/v1/titles/` returns a data with paginations. ' \
+                '`result` have a wrong value, `name` is not found or not saved by POST request.'
         assert title.get('rating') is None, \
-            'Проверьте, что при GET запросе `/api/v1/titles/` возвращаете данные с пагинацией. ' \
-            'Значение параметра `results` неправильное, `rating` без отзывов должен быть равен `None`'
+            'Check that the GET request `/api/v1/titles/` returns a data with paginations. ' \
+            '`result` have a wrong value, `rating` without reviews should be a `None`'
         assert title.get('category') == categories[0], \
-            'Проверьте, что при GET запросе `/api/v1/titles/` возвращаете данные с пагинацией. ' \
-            'Значение параметра `results` неправильное, значение `category` неправильное ' \
-            'или не сохранилось при POST запросе.'
+            'Check that the GET request `/api/v1/titles/` returns a data with paginations. ' \
+            '`result` have a wrong value, `category` have a wrong value' \
+            'or not saved by POST request.'
         assert genres[0] in title.get('genre', []) and genres[1] in title.get('genre', []), \
-            'Проверьте, что при GET запросе `/api/v1/titles/` возвращаете данные с пагинацией. ' \
-            'Значение параметра `results` неправильное, значение `genre` неправильное ' \
-            'или не сохранилось при POST запросе.'
+            'Check that the GET request `/api/v1/titles/` returns a data with paginations. ' \
+            '`result` have a wrong value, `genre` have a wrong value' \
+            'or not saved by POST request.'
         assert title.get('year') == 2000, \
-            'Проверьте, что при GET запросе `/api/v1/titles/` возвращаете данные с пагинацией. ' \
-            'Значение параметра `results` неправильное, значение `year` неправильное ' \
-            'или не сохранилось при POST запросе.'
-        assert title.get('description') == 'Крутое пике', \
-            'Проверьте, что при GET запросе `/api/v1/titles/` возвращаете данные с пагинацией. ' \
-            'Значение параметра `results` неправильное, значение `description` неправильное ' \
-            'или не сохранилось при POST запросе.'
+            'Check that the GET request `/api/v1/titles/` returns a data with paginations. ' \
+            '`result` have a wrong value, `year` have a wrong value' \
+            'or not saved by POST request.'
+        assert title.get('description') == 'Cool peak', \
+            'Check that the GET request `/api/v1/titles/` returns a data with paginations. ' \
+            '`result` have a wrong value, `description` have a wrong value ' \
+            'or not saved by POST request.'
         assert type(title.get('id')) == int, \
-            'Проверьте, что при GET запросе `/api/v1/titles/` возвращаете данные с пагинацией. ' \
-            'Значение параметра `results` неправильное, значение `id` нет или не является целым числом.'
-        data = {'name': 'Поворот', 'year': 2020, 'genre': [genres[1]['slug']],
-                'category': categories[1]['slug'], 'description': 'Крутое пике'}
+            'Check that the GET request `/api/v1/titles/` returns a data with paginations. ' \
+            '`result` have a wrong value, `id` value not found or not integer.'
+        data = {'name': 'Turn', 'year': 2020, 'genre': [genres[1]['slug']],
+                'category': categories[1]['slug'], 'description': 'Cool peak'}
         user_client.post('/api/v1/titles/', data=data)
         response = user_client.get(f'/api/v1/titles/?genre={genres[1]["slug"]}')
         data = response.json()
         assert len(data['results']) == 2, \
-            'Проверьте, что при GET запросе `/api/v1/titles/` фильтуется по `genre` параметру `slug` жанра'
+            'Check that the GET request `/api/v1/titles/` filter by `genre` parameter `slug` genre'
         response = user_client.get(f'/api/v1/titles/?category={categories[0]["slug"]}')
         data = response.json()
         assert len(data['results']) == 1, \
-            'Проверьте, что при GET запросе `/api/v1/titles/` фильтуется по `category` параметру `slug` категории'
+            'Check that the GET request `/api/v1/titles/` filter by `category` parameter `slug` category'
         response = user_client.get(f'/api/v1/titles/?year=2000')
         data = response.json()
         assert len(data['results']) == 1, \
-            'Проверьте, что при GET запросе `/api/v1/titles/` фильтуется по `year` параметру года'
-        response = user_client.get(f'/api/v1/titles/?name=Поворот')
+            'Check that the GET request `/api/v1/titles/` filter by `year` parameter year'
+        response = user_client.get(f'/api/v1/titles/?name=Turn')
         data = response.json()
         assert len(data['results']) == 2, \
-            'Проверьте, что при GET запросе `/api/v1/titles/` фильтуется по `name` параметру названия'
+            'Check that the GET request `/api/v1/titles/` filter by `name` parameter name'
 
     @pytest.mark.django_db(transaction=True)
     def test_03_titles_detail(self, client, user_client):
         titles, categories, genres = create_titles(user_client)
         response = client.get(f'/api/v1/titles/{titles[0]["id"]}/')
         assert response.status_code != 404, \
-            'Страница `/api/v1/titles/{title_id}/` не найдена, проверьте этот адрес в *urls.py*'
+            'The page `/api/v1/titles/{title_id}/` is not found, check it in *urls.py*'
         assert response.status_code == 200, \
-            'Проверьте, что при GET запросе `/api/v1/titles/{title_id}/` ' \
-            'без токена авторизации возвращается статус 200'
+            'Check that the GET request `/api/v1/titles/{title_id}/` ' \
+            'without auth token returns 200'
         data = response.json()
         assert type(data.get('id')) == int, \
-            'Проверьте, что при GET запросе `/api/v1/titles/{title_id}/` возвращаете данные объекта. ' \
-            'Значение `id` нет или не является целым числом.'
+            'Check that the GET request `/api/v1/titles/{title_id}/` returns a object data. ' \
+            '`id` value is not found or not integer.'
         assert data.get('category') == categories[0], \
-            'Проверьте, что при GET запросе `/api/v1/titles/{title_id}/` возвращаете данные объекта. ' \
-            'Значение `category` неправильное.'
+            'Check that the GET request `/api/v1/titles/{title_id}/` returns a object data. ' \
+            '`category` have a wrong value.'
         assert data.get('name') == titles[0]['name'], \
-            'Проверьте, что при GET запросе `/api/v1/titles/{title_id}/` возвращаете данные объекта. ' \
-            'Значение `name` неправильное.'
+            'Check that the GET request `/api/v1/titles/{title_id}/` returns a object data. ' \
+            '`name` have a wrong value.'
         data = {
-            'name': 'Новое название',
+            'name': 'New name',
             'category': categories[1]['slug']
         }
         response = user_client.patch(f'/api/v1/titles/{titles[0]["id"]}/', data=data)
         assert response.status_code == 200, \
-            'Проверьте, что при PATCH запросе `/api/v1/titles/{title_id}/` возвращается статус 200'
+            'Check that the PATCH request  `/api/v1/titles/{title_id}/` returns 200'
         data = response.json()
-        assert data.get('name') == 'Новое название', \
-            'Проверьте, что при PATCH запросе `/api/v1/titles/{title_id}/` возвращаете данные объекта. ' \
-            'Значение `name` изменено.'
+        assert data.get('name') == 'New name', \
+            'Check that the PATCH request`/api/v1/titles/{title_id}/` returns a object data. ' \
+            '`name` value has changed.'
         response = user_client.get(f'/api/v1/titles/{titles[0]["id"]}/')
         assert response.status_code == 200, \
-            'Проверьте, что при GET запросе `/api/v1/titles/{title_id}/` ' \
-            'без токена авторизации возвращается статус 200'
+            'Check that the GET request `/api/v1/titles/{title_id}/` ' \
+            'without token returns 200'
         data = response.json()
         assert data.get('category') == categories[1], \
-            'Проверьте, что при PATCH запросе `/api/v1/titles/{title_id}/` изменяете значение `category`.'
-        assert data.get('name') == 'Новое название', \
-            'Проверьте, что при PATCH запросе `/api/v1/titles/{title_id}/` изменяете значение `name`.'
+            'Check that the PATCH request`/api/v1/titles/{title_id}/` `category` value has changed.'
+        assert data.get('name') == 'New name', \
+            'Check that the PATCH request`/api/v1/titles/{title_id}/` `name` value has changed.'
 
         response = user_client.delete(f'/api/v1/titles/{titles[0]["id"]}/')
         assert response.status_code == 204, \
-            'Проверьте, что при DELETE запросе `/api/v1/titles/{title_id}/` возвращаете статус 204'
+            'Check that the DELETE request`/api/v1/titles/{title_id}/` returns 204'
         response = user_client.get('/api/v1/titles/')
         test_data = response.json()['results']
         assert len(test_data) == len(titles) - 1, \
-            'Проверьте, что при DELETE запросе `/api/v1/titles/{title_id}/` удаляете объект'
+            'Check that the DELETE request`/api/v1/titles/{title_id}/` delete a object'
 
     def check_permissions(self, user, user_name, titles, categories, genres):
         client_user = auth_client(user)
-        data = {'name': 'Чудо юдо', 'year': 1999, 'genre': [genres[2]['slug'], genres[1]['slug']],
-                'category': categories[0]['slug'], 'description': 'Бум'}
+        data = {'name': 'Beast', 'year': 1999, 'genre': [genres[2]['slug'], genres[1]['slug']],
+                'category': categories[0]['slug'], 'description': 'Boom'}
         response = client_user.post('/api/v1/titles/', data=data)
         assert response.status_code == 403, \
-            f'Проверьте, что при POST запросе `/api/v1/titles/` ' \
-            f'с токеном авторизации {user_name} возвращается статус 403'
+            f'Check that the POST request`/api/v1/titles/` ' \
+            f'with {user_name} token returns 403'
         response = client_user.patch(f'/api/v1/titles/{titles[0]["id"]}/', data=data)
         assert response.status_code == 403, \
-            f'Проверьте, что при PATCH запросе `/api/v1/titles/{{title_id}}/` ' \
-            f'с токеном авторизации {user_name} возвращается статус 403'
+            f'Check that the PATCH request`/api/v1/titles/{{title_id}}/` ' \
+            f'with {user_name} token returns 403'
         response = client_user.delete(f'/api/v1/titles/{titles[0]["id"]}/')
         assert response.status_code == 403, \
-            f'Проверьте, что при DELETE запросе `/api/v1/titles/{{title_id}}/` ' \
-            f'с токеном авторизации {user_name} возвращается статус 403'
+            f'Check that the DELETE request`/api/v1/titles/{{title_id}}/` ' \
+            f'with {user_name} returns 403'
 
     @pytest.mark.django_db(transaction=True)
     def test_04_titles_check_permission(self, client, user_client):
         titles, categories, genres = create_titles(user_client)
-        data = {'name': 'Чудо юдо', 'year': 1999, 'genre': [genres[2]['slug'], genres[1]['slug']],
-                'category': categories[0]['slug'], 'description': 'Бум'}
+        data = {'name': 'Beast', 'year': 1999, 'genre': [genres[2]['slug'], genres[1]['slug']],
+                'category': categories[0]['slug'], 'description': 'Boom'}
         response = client.post('/api/v1/titles/', data=data)
         assert response.status_code == 401, \
-            f'Проверьте, что при POST запросе `/api/v1/titles/` ' \
-            f'без токена авторизации возвращается статус 401'
+            f'Check that the POST request`/api/v1/titles/` ' \
+            f'wihtout auth token returns 401'
         response = client.patch(f'/api/v1/titles/{titles[0]["id"]}/', data=data)
         assert response.status_code == 401, \
-            f'Проверьте, что при PATCH запросе `/api/v1/titles/{{title_id}}/` ' \
-            f'без токена авторизации возвращается статус 401'
+            f'Check that the PATCH request`/api/v1/titles/{{title_id}}/` ' \
+            f'wihtout auth token returns 401'
         response = client.delete(f'/api/v1/titles/{titles[0]["id"]}/')
         assert response.status_code == 401, \
-            f'Проверьте, что при DELETE запросе `/api/v1/titles/{{title_id}}/` ' \
-            f'без токена авторизации возвращается статус 401'
+            f'Check that the DELETE request`/api/v1/titles/{{title_id}}/` ' \
+            f'wihtout auth token returns 401'
         user, moderator = create_users_api(user_client)
-        self.check_permissions(user, 'обычного пользователя', titles, categories, genres)
-        self.check_permissions(moderator, 'модератора', titles, categories, genres)
+        self.check_permissions(user, 'user', titles, categories, genres)
+        self.check_permissions(moderator, 'moderator', titles, categories, genres)
