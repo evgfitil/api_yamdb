@@ -60,8 +60,9 @@ pip install -r requirements.txt
   ```
   python manage.py loaddata api/fixtures/db_fixtures.json
   ```
-  6. If You're not using the test data, you need to create Django admin user
+  6. If You're not using the test data, You need to create a Django admin user and apply migrations
  ```
+ python manage.py migrate
  python manage.py createsuperuser
  ```
   7. Start API server locally
