@@ -20,7 +20,7 @@ class Test05ReviewAPI:
         response = client_user.post(f'/api/v1/titles/{title_id}/reviews/', data=data)
         assert response.status_code == 201, \
             'Check that the POST request `/api/v1/titles/{title_id}/reviews/` ' \
-            'with a valid data returns 201, api is available to any authenticated user'
+            'with a valid data returns 201, api is available for any authenticated user'
         return response
 
     @pytest.mark.django_db(transaction=True)
