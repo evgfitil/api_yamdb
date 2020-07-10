@@ -1,7 +1,7 @@
 # api_yamdb
 ***api_yamdb (YaMDb)*** is a training Rest API project based on Django REST framework.
 
-The YaMDb project collects user feedback on the different content types. Contents are divided into categories: "Books", "Films", "TV Shows" and "Music".
+The YaMDb project collects user feedback on different content types. Contents are divided into categories: "Books", "Films", "TV Shows" and "Music".
 
 All available endpoints and API specifications are here https://yamdb.ea4ws.tk/redoc/
 
@@ -36,7 +36,7 @@ You can try most of the functionality use endpoints on this demo site https://ya
   
   You can find API specification and all available endpoints on documentation page http://localhost:8000/redoc/
   
-  In order to obtain a confirmation code for the subsequent receipt of the token use `sent_emails` folder on container `workdir`
+  To obtain a confirmation code for the subsequent receipt of the token use `sent_emails` folder on container `workdir`
   ```
   docker exec -ti <container_id> /bin/sh
   ```
