@@ -13,11 +13,11 @@ You can try most of the functionality use endpoints on this demo site https://ya
   
   1. Clone this repository
   2. Rename `.env-docker-example` file to `.env.dev`. Customize it for your needs.
-  3. If you want to load the test data you can uncomment the line with:
+  3. If you want to load the test data you can uncomment the line in `entrypoint.sh` file with:
   ```
   # python manage.py loaddata api/fixtures/db_fixtures.json
   ``` 
-  in `entrypoint.sh` file
+  
   4. Use provided `Dockerfile` and `docker-compose.yml`, build the image and run the container
   ```
   docker-compose up -d
