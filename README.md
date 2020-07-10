@@ -46,29 +46,36 @@ You can try most of the functionality use endpoints on this demo site https://ya
 
 If You want to test API locally:
   1. Clone this repository
-  2. Create and activate a virtual environment
+  2. Rename `.env-example` file to `.env.dev`.
+  3. Create and activate a virtual environment
   ```
 python3 -m venv venv
 source ./venv/bin/activate
   ```
-  3. Install dependencies
+  4. Install dependencies
   ```
 pip install -r requirements.txt
 ```
-  4. Apply migrations
+  5. If you want to load the test data you need to run:
   ```
-python manage.py migrate
-```
-  5. Create Django admin user
+  python manage.py loaddata api/fixtures/db_fixtures.json
+  ```
+  6. If You're not using the test data, you need to create Django admin user
  ```
  python manage.py createsuperuser
  ```
-  6. Start API server locally
+  7. Start API server locally
 ```
 python manage.py runserver
 ```
 If everything went well, you now have a server running on http://localhost:8000
 
+You can also run `pytest` to make sure is everything is ok.
+
 You can find API specification and all available endpoints on documentation page http://localhost:8000/redoc/
 
 To obtain a confirmation code for the subsequent receipt of the token use `sent_emails` folder and then look into ``*.log`` files.
+
+### Default credentials
+
+If You use the test data, use default django admin user `admin` and default password `django_admin`
