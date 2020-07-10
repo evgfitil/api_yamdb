@@ -9,4 +9,18 @@ services:
     ports:
       - 8000:8000
     env_file:
-      - ./.env
+      - ./.env.dev
+    depends_on:
+      - db
+  
+  db:
+    image: postgres:12.0-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=django
+      - POSTGRES_PASSWORD=example_django
+      - POSTGRES_DB=yamdb
+  
+volumes:
+  postgres_data:
