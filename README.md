@@ -12,7 +12,7 @@ You can try most of the functionality use endpoints on this demo site https://ya
 #### With Docker
   
   1. Clone this repository
-  2. Rename `.env-docker-example` file to `.env.dev`. Customize it for your needs.
+  2. Rename `.env-docker-example` file to `.env.dev`. Customize it for your needs
   3. If you want to load the test data you can uncomment the line in `entrypoint.sh` file with:
   ```
   # python manage.py loaddata api/fixtures/db_fixtures.json
@@ -46,7 +46,7 @@ You can try most of the functionality use endpoints on this demo site https://ya
 
 If You want to test API locally:
   1. Clone this repository
-  2. Rename `.env-example` file to `.env.dev`.
+  2. Rename `.env-example` file to `.env.dev`
   3. Create and activate a virtual environment
   ```
 python3 -m venv venv
@@ -71,7 +71,7 @@ python manage.py runserver
 ```
 If everything went well, you now have a server running on http://localhost:8000
 
-You can also run `pytest` to make sure is everything is ok.
+You can also run `pytest` to make sure is everything is ok
 
 You can find API specification and all available endpoints on documentation page http://localhost:8000/redoc/
 
