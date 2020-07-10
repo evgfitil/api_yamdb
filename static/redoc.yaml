@@ -10,7 +10,7 @@ info:
 
     # User registration algorithm
     1. The User sends a request with the `email` and `username` at `/auth/email/`.
-    2. **YaMDB** sends an email with a (`confirmation_code`) on the `email` .
+    2. **YaMDB** sends an email with a `confirmation_code` on the `email` .
     3. The User sends a request with the `email` and `confirmation_code` at `/auth/token/`, receives a `token` (JWT-token) upon request.
     4. The User can send a PATCH-request at `/users/me/` and fill out the fields in his profile.
 
