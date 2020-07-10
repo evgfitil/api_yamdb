@@ -22,12 +22,17 @@ You can try most of the functionality use endpoints on this demo site https://ya
   ```
   docker-compose up -d
   ```
-  5. Create Django admin user
+  5. If You're not using the test data, you need to create Django admin user
   
   ```
   docker exec -ti <container_id> python manage.py createsuperuser
   ```
   If everything went well, you now have a server running on http://localhost:8000
+
+  You can also run tests to make sure is everything is ok, for that run:
+  ```
+  docker exec -ti <container_id> pytest
+  ```
   
   You can find API specification and all available endpoints on documentation page http://localhost:8000/redoc/
   
