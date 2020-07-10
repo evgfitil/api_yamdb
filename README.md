@@ -3,7 +3,7 @@
 
 The YaMDb project collects user feedback on the different content types. Contents are divided into categories: "Books", "Films", "TV Shows" and "Music".
 
-All available endpoints and API specifications here https://yamdb.ea4ws.tk/redoc/
+All available endpoints and API specifications are here https://yamdb.ea4ws.tk/redoc/
 
 You can try most of the functionality use endpoints on this demo site https://yamdb.ea4ws.tk/api/v1/ or testing it locally.
 
@@ -45,7 +45,7 @@ You can try most of the functionality use endpoints on this demo site https://ya
 #### Without Docker
 
 If You want to test API locally:
-  1. Fork this repository and clone your version of the repo
+  1. Clone this repository
   2. Create and activate a virtual environment
   ```
 python3 -m venv venv
