@@ -73,7 +73,7 @@ If everything went well, you now have a server running on http://localhost:8000
 
 You can also run `pytest` to make sure is everything is ok
 
-You can find API specification and all available endpoints on documentation page http://localhost:8000/redoc/
+API specification and all endpoints available on documentation page http://localhost:8000/redoc/
 
 To obtain a confirmation code for the subsequent receipt of the token use `sent_emails` folder and then look into ``*.log`` files.
 
