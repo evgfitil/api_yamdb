@@ -60,6 +60,7 @@ pip install -r requirements.txt
 ```
   5. If you want to load the test data you need to run:
   ```
+  python manage.py migrate
   python manage.py loaddata api/fixtures/db_fixtures.json
   ```
   6. If You're not using the test data, You need to create a Django admin user and apply migrations
