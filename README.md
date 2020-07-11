@@ -20,7 +20,7 @@ You can try most of the functionality use endpoints on this demo site https://ya
   
   4. Use provided `Dockerfile` and `docker-compose.yml`, build the image and run the container
   ```
-  docker-compose up -d
+  docker-compose up -d --build
   ```
   5. If You're not using the test data, you need to create Django admin user
   
@@ -28,6 +28,8 @@ You can try most of the functionality use endpoints on this demo site https://ya
   docker exec -ti <container_id> python manage.py createsuperuser
   ```
   If everything went well, you now have a server running on http://localhost:8000
+  
+  Run `docker image prune --filter label=stage=builder` to remove a builder image
 
   You can also run tests to make sure is everything is ok, for that run:
   ```
