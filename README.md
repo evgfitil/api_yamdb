@@ -5,7 +5,7 @@ The YaMDb project collects user feedback on different content types. Contents ar
 
 All available endpoints and API specifications are here https://yamdb.ea4ws.tk/redoc/
 
-You can try most of the functionality use endpoints on this demo site https://yamdb.ea4ws.tk/api/v1/ or testing it locally.
+You can try most of the functionality use endpoints on this demo site https://yamdb.ea4ws.tk/api/v1/ or test it locally.
 
 ### Developing and testing locally (Quick Start)
 
@@ -31,7 +31,7 @@ You can try most of the functionality use endpoints on this demo site https://ya
   
   Run `docker image prune --filter label=stage=builder` to remove a builder image
 
-  You can also run tests to make sure is everything is ok, for that run:
+  You can also run tests to make sure everything is ok, for that run:
   ```
   docker exec -ti <container_id> pytest
   ```
@@ -74,7 +74,7 @@ python manage.py runserver
 ```
 If everything went well, you now have a server running on http://localhost:8000
 
-You can also run `pytest` to make sure is everything is ok
+You can also run `pytest` to make sure everything is ok
 
 API specification and all endpoints available on documentation page http://localhost:8000/redoc/
 
