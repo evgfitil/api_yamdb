@@ -1,7 +1,7 @@
 # BUILDER Stage
 #
 # pull base image
-FROM python:3.8.3-alpine as builder
+FROM python:3.8-alpine as builder
 LABEL stage=builder
 
 # set work directory
@@ -23,7 +23,7 @@ RUN pip wheel --no-cache-dir --no-deps --wheel-dir /usr/src/app/wheels -r requir
 # FINAL Stage
 #
 # pull base image
-FROM python:3.8.3-alpine
+FROM python:3.8-alpine
 
 # create app user
 RUN mkdir -p /home/app
