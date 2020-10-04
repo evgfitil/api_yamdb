@@ -7,8 +7,8 @@ services:
     container_name: yamdb-web
     volumes:
       - .:/usr/src/app/
-    ports:
-      - 8000:8000
+    expose:
+      - 8000
     env_file:
       - ./.env.dev
     depends_on:
@@ -17,12 +17,12 @@ services:
   db:
     image: postgres:12.0-alpine
     container_name: yamdb-db
+    expose:
+      - 5432
     volumes:
       - postgres_data:/var/lib/postgresql/data
-    environment:
-      - POSTGRES_USER=django
-      - POSTGRES_PASSWORD=example_django
-      - POSTGRES_DB=yamdb
+    env_file:
+      - .db.env
   
 volumes:
   postgres_data:
