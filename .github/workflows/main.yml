@@ -27,3 +27,21 @@ jobs:
 
       - name: Lint wiht flake8
         run: flake8 . --exclude=./api/migrations/*,./api_yamdb/settings.py,./tests/*
+
+  push_to_docker_hub:
+    name: Push images to the Docker Hub
+    runs-on: ubuntu-latest
+    needs: tests
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v1
+
+      - name: Push to the Docker Hub
+        uses: docker/build-push-action@v1
+        with:
+          path: ./
+          dockerfile: ./Dockerfile
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          repository: evgfitil/api_yamdb
+          tag_with_ref: true
