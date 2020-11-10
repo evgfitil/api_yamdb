@@ -3,9 +3,9 @@
 
 The YaMDb project collects user feedback on different content types. Contents are divided into categories: "Books", "Films", "TV Shows" and "Music".
 
-All available endpoints and API specifications are here https://yamdb.ea4ws.tk/redoc/
+All available endpoints and API specifications are here https://yamdb.evgfitil.ml/redoc/
 
-You can try most of the functionality use endpoints on this demo site https://yamdb.ea4ws.tk/api/v1/ or test it locally.
+You can try most of the functionality use endpoints on this demo site https://yamdb.evgfitil.ml/api/v1/ or test it locally.
 
 ### Developing and testing locally (Quick Start)
 
